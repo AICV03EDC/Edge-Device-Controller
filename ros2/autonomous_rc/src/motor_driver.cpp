@@ -47,10 +47,6 @@ bool SysfsGpio::export_pin() {
         return false;
     }
     exported_ = true;
-
-    // 📸 [포트폴리오 캡처 포인트 1: 커널 파일 권한 확보를 위한 Spin-lock 무한 재시도 로직]
-    // sysfs 파일 시스템 동기화 지연으로 인한 권한 거부(Permission Denied)를
-    // 극복하기 위해 최대 5초간 스트림 개방을 물고 늘어지는 록(Lock) 구현
     std::string val_path = base_path_ + "/value";
     int retries = 0;
     while (retries < 50) { 
@@ -72,9 +68,6 @@ bool SysfsGpio::set_direction_out() {
 }
 
 bool SysfsGpio::write_value(int val) {
-    // 📸 [포트폴리오 캡처 포인트 2: Fast I/O 상시 스트림 및 seekp(0) 메모리 덮어쓰기]
-    // 매번 파일을 열고 닫는 오버헤드를 제거하고, 상시 개방된 스트림의
-    // 메모리 커서를 맨 앞으로 돌려(seekp) 값을 덮어씌움으로써 0ms 지연율 달성
     if (!value_stream_.is_open()) return false;
     value_stream_.seekp(0);
     value_stream_ << val;
