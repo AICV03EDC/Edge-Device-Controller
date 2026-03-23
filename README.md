@@ -1,6 +1,6 @@
 # 🏎️ ROS ROYCE: Autonomous Driving Edge Control System
 
-![ROS ROYCE Demo]()
+![ROS ROYCE Demo](ros_royce_demo.gif)
 
 ## 📌 1. Project Overview
 **"Edge-Device에서의 실시간 자율주행 인지 및 하드웨어 제어 파이프라인 최적화"**
@@ -26,25 +26,3 @@
 시스템은 단일 노드(Single Node), 단일 스레드(Single Thread) 기반의 동기 루프로 설계되어 오버헤드를 최소화했습니다.
 
 ![System Architecture]([여기에 발표자료에 있는 아키텍처 다이어그램 이미지 링크를 넣으세요])
-
-```text
-┌─────────────────────────────────────────────────────────┐
-│                 autonomous_rc_node                      │
-│                                                         │
-│  ┌─────────┐  ┌─────────┐                               │
-│  │ Lane    │  │ OD      │  TensorRT 8.x (FP16/FP32)     │
-│  │ SegNet  │  │ YOLO    │                               │
-│  └────┬────┘  └────┬────┘                               │
-│       │            │                                    │
-│  ┌────▼────────────▼────┐                               │
-│  │   ControlLogic       │  차선→조향 / OD→IPM거리→상태    │
-│  │   - Tracking         │                               │
-│  │   - Kalman4D         │                               │
-│  │   - IPM Distance     │                               │
-│  └────┬────────────┬────┘                               │
-│       │            │                                    │
-│  ┌────▼────┐  ┌────▼────┐                               │
-│  │ Servo   │  │ DC Motor│  sysfs GPIO + PWM             │
-│  │ (steer) │  │ (speed) │                               │
-│  └─────────┘  └─────────┘                               │
-└─────────────────────────────────────────────────────────┘
