@@ -12,7 +12,7 @@
 - **Real-time Perception Pipeline:** TensorRT를 활용해 Lane Segmentation(차선 인식)과 YOLO-based Object Detection(객체 인식)을 동시에 수행합니다.
 - **Inverse Perspective Mapping (IPM):** 2D 이미지 기반의 객체 인식 결과를 3D 공간의 실제 거리 데이터로 변환하여 정밀한 제어 로직을 구현했습니다.
 - **Hardware Control Integration:** 추론된 데이터를 바탕으로 `sysfs`를 통해 GPIO 및 PWM 신호를 직접 제어하여 모터를 구동합니다.
-- **Custom Dataset via Pseudo-labeling:** 인식률 향상을 위해 Pseudo-labeling 기법을 적용하여 다중 클래스 커스텀 데이터셋을 구축하고 모델을 최적화했습니다.
+- **Custom Dataset via Pseudo-labeling:** 라벨 기준이 제각각인 여러 데이터셋을 하나로 통합하기 위해 Pseudo-labeling을 적용, 일관된 커스텀 다중 클래스 데이터셋을 구축했습니다.
 
 ## 🛠 3. Tech Stack
 - **Hardware:** NVIDIA Jetson Xavier NX
@@ -22,7 +22,5 @@
 - **Hardware Interface:** `sysfs` GPIO, PWM Control
 
 ## 🏗 4. System Architecture
-
-시스템은 단일 노드(Single Node), 단일 스레드(Single Thread) 기반의 동기 루프로 설계되어 오버헤드를 최소화했습니다.
 
 ![System Architecture](ros_royce_pipeline.png)
