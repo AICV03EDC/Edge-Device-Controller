@@ -25,4 +25,4 @@
 
 시스템은 단일 노드(Single Node), 단일 스레드(Single Thread) 기반의 동기 루프로 설계되어 오버헤드를 최소화했습니다.
 
-![System Architecture]([ros_royce_pipeline.png])
+![System Architecture](ros_royce_pipeline.png)
